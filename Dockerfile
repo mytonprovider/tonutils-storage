@@ -14,4 +14,3 @@ COPY --from=builder /out/tonutils-storage /usr/local/bin/tonutils-storage
 WORKDIR /data
 EXPOSE 17555/udp
 ENTRYPOINT ["/usr/local/bin/tonutils-storage"]
-CMD ["--daemon", "--db", "/data/db"]
