@@ -31,7 +31,7 @@ jobs:
           git clone --depth 1 --branch "$V" "https://github.com/$N" r/src
           cd r
           go=$(sed -n 's/^go \([0-9]*\.[0-9]*\).*/\1/p' src/go.mod)
-          docker build --provenance=false -f docker/Dockerfile --build-arg GO="$go" --build-arg VERSION="$V" \
+          docker build --provenance=false --build-arg GO="$go" --build-arg VERSION="$V" \
             --label org.opencontainers.image.source="https://github.com/$N" \
             --label org.opencontainers.image.revision="$(git -C src rev-parse HEAD)" \
             --label org.opencontainers.image.version="$V" \

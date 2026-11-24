@@ -11,8 +11,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 COPY --from=builder /out/tonutils-storage /usr/local/bin/tonutils-storage
-COPY docker/entrypoint.sh /usr/local/bin/tonutils-storage-entrypoint.sh
-RUN mkdir -p /data/db /bags
-EXPOSE 13474 47431/udp
-ENTRYPOINT ["/usr/local/bin/tonutils-storage-entrypoint.sh"]
-CMD ["--daemon", "--db", "/data/db", "--api", "0.0.0.0:13474"]
+WORKDIR /data
+EXPOSE 17555/udp
+ENTRYPOINT ["/usr/local/bin/tonutils-storage"]
+CMD ["--daemon", "--db", "/data/db"]
